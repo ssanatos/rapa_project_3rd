@@ -6,3 +6,7 @@ test_algorithm01.py : 심화 이해
 터틀봇 길찾기 프로젝트
 
 
+
+
+<img src='https://www.ros.org/imgs/ros-noetic-ninjemys.svg' />
+
