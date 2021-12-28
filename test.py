@@ -61,6 +61,8 @@ def callback(frame):
 
         img_list.append(np.mean(cv_image[0:80, 420:480]))  # 귀퉁이
         img_list.append(np.mean(cv_image[300:340, 220:260])) # 정가운데
+        img_list.append(np.mean(cv_image[310:330, 0:120]))  # 상단 가운데
+        img_list.append(np.mean(cv_image[310:330, 360:480]))    # 하단 가운데
 
 
 
@@ -161,6 +163,8 @@ def callback(frame):
         print("4-4 > \n", cv_image[480:639, 360:480] )
         print("4-1 귀퉁이 > \n", cv_image[0:80, 420:480] )
         print("정중앙 > \n", cv_image[300:340, 220:260] )
+        print("1 가운데  > \n", cv_image[310:330, 0:120] )
+        print("4 가운데 > \n", cv_image[310:330, 360:480] )
         rospy.sleep(10)
 
     return
