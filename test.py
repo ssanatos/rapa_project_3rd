@@ -82,6 +82,7 @@ def callback(frame):
         
         print("넘파이 : ",img_list)
         print("리스트 : ",img_list2)
+        print('넘파이 - 리스트 : ', img_list - img_list2)
         rospy.time(10)
 
     return
