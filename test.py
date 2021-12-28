@@ -38,6 +38,7 @@ def callback(frame):
         # 이미지 사이즈 = 640 x 480
         # 검정 라인이 있는 영역은 평균값이 더 적을 거라는 가정하에.
         img_list =[]
+        img_list.append(np.mean(cv_image[0:80, 0:60]))
         img_list.append(np.mean(cv_image[0:160, 0:120]))
         img_list.append(np.mean(cv_image[160:320, 0:120]))   
         img_list.append(np.mean(cv_image[320:480, 0:120]))
@@ -87,6 +88,7 @@ def callback(frame):
 
 
         img_list2 =[]
+        img_list2.append(sum(sum(cv_image[0:80, 0:60]))*255/19200)
         img_list2.append(sum(sum(cv_image[0:160, 0:120]))*255/19200)
         img_list2.append(sum(sum(cv_image[160:320, 0:120]))*255/19200)   
         img_list2.append(sum(sum(cv_image[320:480, 0:120]))*255/19200)
@@ -137,6 +139,7 @@ def callback(frame):
         print("넘파이 : ",img_list)
         print("리스트 : ",img_list2)
         # print("리스트 : ",img_list3)
+        print("1-1 > \n", cv_image[0:80, 0:60] )
         print("1-1 > \n", cv_image[0:160, 0:120] )
         print("1-2 > \n", cv_image[160:320, 0:120] )
         print("1-3 > \n", cv_image[320:480, 0:120] )
