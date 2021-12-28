@@ -37,11 +37,11 @@ def callback(frame):
         # cv_image = cv.cvtColor(cv_image, cv.COLOR_BGR2GRAY)
         cv_image = bridge.imgmsg_to_cv2 (frame, 'mono8')
 
-        while not rospy.is_shutdown():
-            if cv_image.size != (640*480*1):
-                continue
-            cv.imshow("display", cv_image)
-            cv.waitKey(33)
+        # while not rospy.is_shutdown():
+        #     if cv_image.size != (640*480*1):
+        #         continue
+        #     cv.imshow("display", cv_image)
+        #     cv.waitKey(33)
 
         # 이미지 사이즈 = 640 x 480
         # 검정 라인이 있는 영역은 평균값이 더 적을 거라는 가정하에.
