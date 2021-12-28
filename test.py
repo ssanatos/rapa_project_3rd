@@ -38,7 +38,7 @@ def callback(frame):
         # 이미지 사이즈 = 640 x 480
         # 검정 라인이 있는 영역은 평균값이 더 적을 거라는 가정하에.
         img_list =[]
-        img_list.append(np.mean(cv_image[0:80, 0:60]))
+        img_list.append(np.mean(cv_image[0:80, 0:60]))   # 귀퉁이
         img_list.append(np.mean(cv_image[0:160, 0:120]))
         img_list.append(np.mean(cv_image[160:320, 0:120]))   
         img_list.append(np.mean(cv_image[320:480, 0:120]))
@@ -58,6 +58,9 @@ def callback(frame):
         img_list.append(np.mean(cv_image[160:320, 360:480]))   
         img_list.append(np.mean(cv_image[320:480, 360:480]))
         img_list.append(np.mean(cv_image[480:640, 360:480]))
+
+        img_list.append(np.mean(cv_image[0:80, 420:480]))  # 귀퉁이
+        img_list.append(np.mean(cv_image[300:340, 220:260])) # 정가운데
 
 
 
@@ -112,7 +115,7 @@ def callback(frame):
         img_list2.append(sum(sum(cv_image[320:480, 360:480]))*255/19200)
         # img_list2.append(sum(sum(cv_image[480:639, 360:480]))*255/19200)
         img_list2.append(0)
-
+        img_list2.append(sum(sum(cv_image[300:340, 220:260]))*255/19200)
 
 
         # img_list3 =[]
@@ -139,7 +142,7 @@ def callback(frame):
         print("넘파이 : ",img_list)
         print("리스트 : ",img_list2)
         # print("리스트 : ",img_list3)
-        print("1-1 > \n", cv_image[0:80, 0:60] )
+        print("1-1 귀퉁이 > \n", cv_image[0:80, 0:60] )
         print("1-1 > \n", cv_image[0:160, 0:120] )
         print("1-2 > \n", cv_image[160:320, 0:120] )
         print("1-3 > \n", cv_image[320:480, 0:120] )
@@ -156,6 +159,8 @@ def callback(frame):
         print("4-2 > \n", cv_image[160:320, 360:480] )
         print("4-3 > \n", cv_image[320:480, 360:480] )
         print("4-4 > \n", cv_image[480:639, 360:480] )
+        print("4-1 귀퉁이 > \n", cv_image[0:80, 420:480] )
+        print("정중앙 > \n", cv_image[300:340, 220:260] )
         rospy.sleep(10)
 
     return
