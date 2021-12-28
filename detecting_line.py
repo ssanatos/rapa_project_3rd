@@ -37,19 +37,35 @@ def callback(frame):
         # 이미지 사이즈 = 640 x 480
         # 검정 라인이 있는 영역은 평균값이 더 적을 거라는 가정하에.
         img_list =[]
-        img_list.append(np.mean(cv_image[41:71, 450:480]))
-        img_list.append(np.mean(cv_image[71:142, 450:480]))   
-        img_list.append(np.mean(cv_image[142:213, 450:480]))
-        img_list.append(np.mean(cv_image[213:284, 450:480]))
-        img_list.append(np.mean(cv_image[284:355, 450:480]))  # center
-        img_list.append(np.mean(cv_image[355:426, 450:480]))
-        img_list.append(np.mean(cv_image[426:478, 450:480]))
-        img_list.append(np.mean(cv_image[478:600, 450:480]))
+        img_list.append(np.mean(cv_image[0:53, 450:480]))
+        img_list.append(np.mean(cv_image[53:106, 450:480]))   
+        img_list.append(np.mean(cv_image[106:159, 450:480]))
+        img_list.append(np.mean(cv_image[159:212, 450:480]))
+        img_list.append(np.mean(cv_image[212:265, 450:480]))  # center
+        img_list.append(np.mean(cv_image[265:318, 450:480]))
+        img_list.append(np.mean(cv_image[318:371, 450:480]))
+        img_list.append(np.mean(cv_image[371:424, 450:480]))
+        img_list.append(np.mean(cv_image[424:478, 450:480]))
         # 윗라인
         forward_list = []
-        forward_list.append(np.mean(cv_image[213:284, 420:450]))
-        forward_list.append(np.mean(cv_image[284:355, 420:450]))  # center
-        forward_list.append(np.mean(cv_image[355:426, 420:450]))
+        forward_list.append(np.mean(cv_image[159:212, 420:450]))
+        forward_list.append(np.mean(cv_image[212:265, 420:450]))  # center
+        forward_list.append(np.mean(cv_image[265:318, 420:450]))
+
+        # img_list.append(np.mean(cv_image[41:71, 450:480]))
+        # img_list.append(np.mean(cv_image[71:142, 450:480]))   
+        # img_list.append(np.mean(cv_image[142:213, 450:480]))
+        # img_list.append(np.mean(cv_image[213:284, 450:480]))
+        # img_list.append(np.mean(cv_image[284:355, 450:480]))  # center
+        # img_list.append(np.mean(cv_image[355:426, 450:480]))
+        # img_list.append(np.mean(cv_image[426:478, 450:480]))
+        # img_list.append(np.mean(cv_image[478:600, 450:480]))
+        # # 윗라인
+        # forward_list = []
+        # forward_list.append(np.mean(cv_image[213:284, 420:450]))
+        # forward_list.append(np.mean(cv_image[284:355, 420:450]))  # center
+        # forward_list.append(np.mean(cv_image[355:426, 420:450]))
+
 
         tmp = min(img_list)
         index = img_list.index(tmp)
