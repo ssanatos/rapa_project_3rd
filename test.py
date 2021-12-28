@@ -7,6 +7,7 @@ from cv_bridge import CvBridge
 from sensor_msgs.msg import LaserScan
 import numpy as np
 import threading
+import statistics as st
 
 bridge = CvBridge()
 def scan(data):
@@ -60,29 +61,56 @@ def callback(frame):
 
 
         img_list2 =[]
-        img_list2.append(sum(cv_image[0:160, 0:120])/19200)
-        img_list2.append(sum(cv_image[160:320, 0:120])/19200)   
-        img_list2.append(sum(cv_image[320:480, 0:120])/19200)
-        img_list2.append(sum(cv_image[480:640, 0:120])/19200)
+        img_list2.append(sum(sum(cv_image[0:160, 0:120]))/120)
+        img_list2.append(sum(sum(cv_image[160:320, 0:120]))/120)   
+        img_list2.append(sum(sum(cv_image[320:480, 0:120]))/120)
+        # img_list2.append(sum(sum(cv_image[480:639, 0:120]))/120)
+        img_list2.append(0)
 
-        img_list2.append(sum(cv_image[0:160, 120:240])/19200)
-        img_list2.append(sum(cv_image[160:320, 120:240])/19200)   
-        img_list2.append(sum(cv_image[320:480, 120:240])/19200)
-        img_list2.append(sum(cv_image[480:640, 120:240])/19200)
+        img_list2.append(sum(sum(cv_image[0:160, 120:240]))/120)
+        img_list2.append(sum(sum(cv_image[160:320, 120:240]))/120)   
+        img_list2.append(sum(sum(cv_image[320:480, 120:240]))/120)
+        # img_list2.append(sum(sum(cv_image[480:639, 120:240]))/120)
+        img_list2.append(0)
 
-        img_list2.append(sum(cv_image[0:160, 240:360])/19200)
-        img_list2.append(sum(cv_image[160:320, 240:360])/19200)   
-        img_list2.append(sum(cv_image[320:480, 240:360])/19200)
-        img_list2.append(sum(cv_image[480:640, 240:360])/19200)
+        img_list2.append(sum(sum(cv_image[0:160, 240:360]))/120)
+        img_list2.append(sum(sum(cv_image[160:320, 240:360]))/120)   
+        img_list2.append(sum(sum(cv_image[320:480, 240:360]))/120)
+        # img_list2.append(sum(sum(cv_image[480:639, 240:360]))/120)
+        img_list2.append(0)
 
-        img_list2.append(sum(cv_image[0:160, 360:480])/19200)
-        img_list2.append(sum(cv_image[160:320, 360:480])/19200)   
-        img_list2.append(sum(cv_image[320:480, 360:480])/19200)
-        img_list2.append(sum(cv_image[480:640, 360:480])/19200)
+        img_list2.append(sum(sum(cv_image[0:160, 360:480]))/120)
+        img_list2.append(sum(sum(cv_image[160:320, 360:480]))/120)   
+        img_list2.append(sum(sum(cv_image[320:480, 360:480]))/120)
+        # img_list2.append(sum(sum(cv_image[480:639, 360:480]))/120)
+        img_list2.append(0)
+
+
+
+        img_list3 =[]
+        img_list3.append(st.mean(cv_image[0:160, 0:120]))
+        img_list3.append(st.mean(cv_image[160:320, 0:120]))   
+        img_list3.append(st.mean(cv_image[320:480, 0:120]))
+        img_list3.append(st.mean(cv_image[480:640, 0:120]))
+
+        img_list3.append(st.mean(cv_image[0:160, 120:240]))
+        img_list3.append(st.mean(cv_image[160:320, 120:240]))   
+        img_list3.append(st.mean(cv_image[320:480, 120:240]))
+        img_list3.append(st.mean(cv_image[480:640, 120:240]))
+
+        img_list3.append(st.mean(cv_image[0:160, 240:360]))
+        img_list3.append(st.mean(cv_image[160:320, 240:360]))   
+        img_list3.append(st.mean(cv_image[320:480, 240:360]))
+        img_list3.append(st.mean(cv_image[480:640, 240:360]))
+
+        img_list3.append(st.mean(cv_image[0:160, 360:480]))
+        img_list3.append(st.mean(cv_image[160:320, 360:480]))   
+        img_list3.append(st.mean(cv_image[320:480, 360:480]))
+        img_list3.append(st.mean(cv_image[480:640, 360:480]))
         
         print("넘파이 : ",img_list)
         print("리스트 : ",img_list2)
-        print('넘파이 - 리스트 : ', img_list - img_list2)
+        print("리스트 : ",img_list3)
         rospy.time(10)
 
     return
