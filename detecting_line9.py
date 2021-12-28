@@ -8,8 +8,6 @@ from sensor_msgs.msg import LaserScan
 import numpy as np
 import threading
 
-# PC roscore , turtle bringup robot , turtle rosrun cv_camera cv_camera_node , chmod 777 *.py , python3 파일명.py
-
 bridge = CvBridge()
 def scan(data):
     global cmd_vel
@@ -27,7 +25,6 @@ def scan(data):
         # STOP
         cmd_vel.linear.x = 0.0
 
-    # rospy.spin()  
     pass
 
 
@@ -37,19 +34,44 @@ def callback(frame):
     if frame != None:
         cv_image = bridge.imgmsg_to_cv2 (frame, 'bgr8')
         cv_image = cv.cvtColor(cv_image, cv.COLOR_BGR2GRAY)
+        # 이미지 사이즈 = 640 x 480
+        # 검정 라인이 있는 영역은 평균값이 더 적을 거라는 가정하에.
+        img_list =[]
+        img_list.append(np.mean(cv_image[41:71, 450:480]))
+        img_list.append(np.mean(cv_image[71:142, 450:480]))   
+        img_list.append(np.mean(cv_image[142:213, 450:480]))
+        img_list.append(np.mean(cv_image[213:284, 450:480]))
+        img_list.append(np.mean(cv_image[284:355, 450:480]))  # center
+        img_list.append(np.mean(cv_image[355:426, 450:480]))
+        img_list.append(np.mean(cv_image[426:478, 450:480]))
+        img_list.append(np.mean(cv_image[478:600, 450:480]))
+        # 윗라인
+        forward_list = []
+        forward_list.append(np.mean(cv_image[213:284, 420:450]))
+        forward_list.append(np.mean(cv_image[284:355, 420:450]))  # center
+        forward_list.append(np.mean(cv_image[355:426, 420:450]))
 
-        collect = np.empty(shape=(3,19))
-        for idxi, i in enumerate(range(354,448,32)):
-            for idxk, k in enumerate(range(2,608,32)):
-                row_gap = abs(np.mean(cv_image[k-4:k, i-4:i]) - np.mean(cv_image[k+28:k+32, i-4:i]))
-                col_gap = abs(np.mean(cv_image[k-4:k, i-4:i]) - np.mean(cv_image[k-4:k, i+28:i+32]))
-                collect[idxi,idxk] = (row_gap + col_gap)*((9.5-idxk)*(idxi+1)**2)
-        cmd_vel.angular.z = sum(collect)*0.00018797
-        cmd_vel.linear.x = 0.1
-        pub.publish(cmd_vel)
+        tmp = min(img_list)
+        index = img_list.index(tmp)
+        print("밑 : ",img_list)
+        print(index)
+
+        tmp2 = min(forward_list)
+        index2 = forward_list.index(tmp2)
+        print("위 : ",forward_list)
+        print(index2)
+
+        if tmp2 < 110 :
+            cmd_vel.linear.x = 0.1
+            cmd_vel.angular.z = (1-index2)/10
+            pub.publish(cmd_vel)
+    
+        else :
+            cmd_vel.linear.x = 0.1
+            cmd_vel.angular.z = (4-index)/10
+            pub.publish(cmd_vel)
     else:
         cmd_vel.linear.x = 0.0
-        cmd_vel.angular.z = 0.0
         pub.publish(cmd_vel)
         print('카메라 연결 안됐음')
     return
