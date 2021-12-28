@@ -60,29 +60,55 @@ def callback(frame):
 
 
 
+        # img_list2 =[]
+        # img_list2.append(sum(sum(cv_image[0:160, 0:120]))/120)
+        # img_list2.append(sum(sum(cv_image[160:320, 0:120]))/120)   
+        # img_list2.append(sum(sum(cv_image[320:480, 0:120]))/120)
+        # # img_list2.append(sum(sum(cv_image[480:639, 0:120]))/120)
+        # img_list2.append(0)
+
+        # img_list2.append(sum(sum(cv_image[0:160, 120:240]))/120)
+        # img_list2.append(sum(sum(cv_image[160:320, 120:240]))/120)   
+        # img_list2.append(sum(sum(cv_image[320:480, 120:240]))/120)
+        # # img_list2.append(sum(sum(cv_image[480:639, 120:240]))/120)
+        # img_list2.append(0)
+
+        # img_list2.append(sum(sum(cv_image[0:160, 240:360]))/120)
+        # img_list2.append(sum(sum(cv_image[160:320, 240:360]))/120)   
+        # img_list2.append(sum(sum(cv_image[320:480, 240:360]))/120)
+        # # img_list2.append(sum(sum(cv_image[480:639, 240:360]))/120)
+        # img_list2.append(0)
+
+        # img_list2.append(sum(sum(cv_image[0:160, 360:480]))/120)
+        # img_list2.append(sum(sum(cv_image[160:320, 360:480]))/120)   
+        # img_list2.append(sum(sum(cv_image[320:480, 360:480]))/120)
+        # # img_list2.append(sum(sum(cv_image[480:639, 360:480]))/120)
+        # img_list2.append(0)
+
+
         img_list2 =[]
-        img_list2.append(sum(sum(cv_image[0:160, 0:120]))/120)
-        img_list2.append(sum(sum(cv_image[160:320, 0:120]))/120)   
-        img_list2.append(sum(sum(cv_image[320:480, 0:120]))/120)
-        # img_list2.append(sum(sum(cv_image[480:639, 0:120]))/120)
+        img_list2.append(sum(sum(cv_image[0:160, 0:120]))*255/19200)
+        img_list2.append(sum(sum(cv_image[160:320, 0:120]))*255/19200)   
+        img_list2.append(sum(sum(cv_image[320:480, 0:120]))*255/19200)
+        # img_list2.append(sum(sum(cv_image[480:639, 0:120]))*255/19200)
         img_list2.append(0)
 
-        img_list2.append(sum(sum(cv_image[0:160, 120:240]))/120)
-        img_list2.append(sum(sum(cv_image[160:320, 120:240]))/120)   
-        img_list2.append(sum(sum(cv_image[320:480, 120:240]))/120)
-        # img_list2.append(sum(sum(cv_image[480:639, 120:240]))/120)
+        img_list2.append(sum(sum(cv_image[0:160, 120:240]))*255/19200)
+        img_list2.append(sum(sum(cv_image[160:320, 120:240]))*255/19200)   
+        img_list2.append(sum(sum(cv_image[320:480, 120:240]))*255/19200)
+        # img_list2.append(sum(sum(cv_image[480:639, 120:240]))*255/19200)
         img_list2.append(0)
 
-        img_list2.append(sum(sum(cv_image[0:160, 240:360]))/120)
-        img_list2.append(sum(sum(cv_image[160:320, 240:360]))/120)   
-        img_list2.append(sum(sum(cv_image[320:480, 240:360]))/120)
-        # img_list2.append(sum(sum(cv_image[480:639, 240:360]))/120)
+        img_list2.append(sum(sum(cv_image[0:160, 240:360]))*255/19200)
+        img_list2.append(sum(sum(cv_image[160:320, 240:360]))*255/19200)   
+        img_list2.append(sum(sum(cv_image[320:480, 240:360]))*255/19200)
+        # img_list2.append(sum(sum(cv_image[480:639, 240:360]))*255/19200)
         img_list2.append(0)
 
-        img_list2.append(sum(sum(cv_image[0:160, 360:480]))/120)
-        img_list2.append(sum(sum(cv_image[160:320, 360:480]))/120)   
-        img_list2.append(sum(sum(cv_image[320:480, 360:480]))/120)
-        # img_list2.append(sum(sum(cv_image[480:639, 360:480]))/120)
+        img_list2.append(sum(sum(cv_image[0:160, 360:480]))*255/19200)
+        img_list2.append(sum(sum(cv_image[160:320, 360:480]))*255/19200)   
+        img_list2.append(sum(sum(cv_image[320:480, 360:480]))*255/19200)
+        # img_list2.append(sum(sum(cv_image[480:639, 360:480]))*255/19200)
         img_list2.append(0)
 
 
