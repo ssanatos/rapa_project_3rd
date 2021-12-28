@@ -56,8 +56,33 @@ def callback(frame):
         img_list.append(np.mean(cv_image[160:320, 360:480]))   
         img_list.append(np.mean(cv_image[320:480, 360:480]))
         img_list.append(np.mean(cv_image[480:640, 360:480]))
+
+
+
+        img_list2 =[]
+        img_list2.append(sum(cv_image[0:160, 0:120])/19200)
+        img_list2.append(sum(cv_image[160:320, 0:120])/19200)   
+        img_list2.append(sum(cv_image[320:480, 0:120])/19200)
+        img_list2.append(sum(cv_image[480:640, 0:120])/19200)
+
+        img_list2.append(sum(cv_image[0:160, 120:240])/19200)
+        img_list2.append(sum(cv_image[160:320, 120:240])/19200)   
+        img_list2.append(sum(cv_image[320:480, 120:240])/19200)
+        img_list2.append(sum(cv_image[480:640, 120:240])/19200)
+
+        img_list2.append(sum(cv_image[0:160, 240:360])/19200)
+        img_list2.append(sum(cv_image[160:320, 240:360])/19200)   
+        img_list2.append(sum(cv_image[320:480, 240:360])/19200)
+        img_list2.append(sum(cv_image[480:640, 240:360])/19200)
+
+        img_list2.append(sum(cv_image[0:160, 360:480])/19200)
+        img_list2.append(sum(cv_image[160:320, 360:480])/19200)   
+        img_list2.append(sum(cv_image[320:480, 360:480])/19200)
+        img_list2.append(sum(cv_image[480:640, 360:480])/19200)
         
-        print(img_list)
+        print("넘파이 : ",img_list)
+        print("리스트 : ",img_list2)
+        rospy.time(10)
 
     return
 
