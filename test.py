@@ -33,11 +33,12 @@ def callback(frame):
     global cmd_vel
 
     if frame != None:
-        cv_image = bridge.imgmsg_to_cv2 (frame, 'bgr8')
-        cv_image = cv.cvtColor(cv_image, cv.COLOR_BGR2GRAY)
+        # cv_image = bridge.imgmsg_to_cv2 (frame, 'bgr8')
+        # cv_image = cv.cvtColor(cv_image, cv.COLOR_BGR2GRAY)
+        cv_image = bridge.imgmsg_to_cv2 (frame, 'mono8')
 
         while not rospy.is_shutdown():
-            if cv_image.size != (640*480*3):
+            if cv_image.size != (640*480*1):
                 continue
             cv.imshow("display", cv_image)
             cv.waitKey(33)
