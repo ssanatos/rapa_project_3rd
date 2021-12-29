@@ -24,6 +24,10 @@ Scope, Timescales, |
 
 <img src='./검출영역_나누기.png' />
 
+<img src='./영역을_어떻게_읽을것인가.png' />
+
+<img src='./주행_알고리즘_구현.png' />
+
 
 <img src='https://www.ros.org/imgs/ros-noetic-ninjemys.svg' />
 
