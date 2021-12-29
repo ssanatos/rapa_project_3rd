@@ -19,7 +19,7 @@ def scan(data):
 
     if result > 0 or no_hindrance == 0 :
         # MOVE
-        cmd_vel.linear.x = 0.01
+        cmd_vel.linear.x = 0.05
         pass
     else :
         # STOP
@@ -35,7 +35,7 @@ def callback(frame):
         cv_image = bridge.imgmsg_to_cv2 (frame, 'bgr8')
         cv_image = cv.cvtColor(cv_image, cv.COLOR_BGR2GRAY)
         cv_image = cv.rotate(cv_image, cv.ROTATE_180)
-        # 검정 라인이 있는 영역은 평균값이 더 적을 거라는 가정하에.
+        # 검정 라인이 있는 영역은 평균값이 더 작을 거라는 가정하에.
         img_list =[]
         img_list.append(np.mean(cv_image[0:53, 450:480]))
         img_list.append(np.mean(cv_image[53:106, 450:480]))   
@@ -63,18 +63,18 @@ def callback(frame):
         print(index2)
         # rospy.sleep(10)
         if tmp2 < 110 :
-            cmd_vel.linear.x = 0.01
+            cmd_vel.linear.x = 0.05
             cmd_vel.angular.z = (1-index2)/10
             pub.publish(cmd_vel)
     
         elif tmp < 110 :
-            cmd_vel.linear.x = 0.01
+            cmd_vel.linear.x = 0.05
             cmd_vel.angular.z = (4-index)/10
             pub.publish(cmd_vel)
 
         else :
             cmd_vel.linear.x = 0.01
-            cmd_vel.angular.z = -0.2
+            cmd_vel.angular.z = -0.1
             pub.publish(cmd_vel)
     else:
         cmd_vel.linear.x = 0.0
