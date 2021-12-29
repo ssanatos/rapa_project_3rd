@@ -72,7 +72,7 @@ def callback(frame):
     
         else :
             cmd_vel.linear.x = 0.01
-            cmd_vel.angular.z = 0
+            cmd_vel.angular.z = -0.1
         pub.publish(cmd_vel)
         
     else:

@@ -34,7 +34,7 @@ def callback(frame):
     if frame != None:
         cv_image = bridge.imgmsg_to_cv2 (frame, 'bgr8')
         cv_image = cv.cvtColor(cv_image, cv.COLOR_BGR2GRAY)
-        cv_image = cv.rotate(cv_image, cv.ROTATE_180)
+        # cv_image = cv.rotate(cv_image, cv.ROTATE_180)
         # 검정 라인이 있는 영역은 평균값이 더 적을 거라는 가정하에.
         img_list =[]
         img_list.append(np.mean(cv_image[0:53, 450:480]))
