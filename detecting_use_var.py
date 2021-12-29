@@ -19,7 +19,7 @@ def scan(data):
 
     if result > 0 or no_hindrance == 0 :
         # MOVE
-        cmd_vel.linear.x = 0.01
+        cmd_vel.linear.x = 0.1
         pass
     else :
         # STOP
@@ -32,45 +32,49 @@ def callback(frame):
     global cmd_vel
 
     if frame != None:
-        cv_image = bridge.imgmsg_to_cv2 (frame, 'bgr8')
-        cv_image = cv.cvtColor(cv_image, cv.COLOR_BGR2GRAY)
+        cv_image = bridge.imgmsg_to_cv2 (frame, 'mono8')
         cv_image = cv.rotate(cv_image, cv.ROTATE_180)
-        # 검정 라인이 있는 영역은 평균값이 더 적을 거라는 가정하에.
+        # 밑라인
         img_list =[]
-        img_list.append(np.mean(cv_image[0:53, 450:480]))
-        img_list.append(np.mean(cv_image[53:106, 450:480]))   
-        img_list.append(np.mean(cv_image[106:159, 450:480]))
-        img_list.append(np.mean(cv_image[159:212, 450:480]))
-        img_list.append(np.mean(cv_image[212:265, 450:480]))  # center
-        img_list.append(np.mean(cv_image[265:318, 450:480]))
-        img_list.append(np.mean(cv_image[318:371, 450:480]))
-        img_list.append(np.mean(cv_image[371:424, 450:480]))
-        img_list.append(np.mean(cv_image[424:478, 450:480]))
+        img_list.append(np.var(cv_image[0:53, 450:480]))
+        img_list.append(np.var(cv_image[53:106, 450:480]))   
+        img_list.append(np.var(cv_image[106:159, 450:480]))
+        img_list.append(np.var(cv_image[159:212, 450:480]))
+        img_list.append(np.var(cv_image[212:265, 450:480]))  # center
+        img_list.append(np.var(cv_image[265:318, 450:480]))
+        img_list.append(np.var(cv_image[318:371, 450:480]))
+        img_list.append(np.var(cv_image[371:424, 450:480]))
+        img_list.append(np.var(cv_image[424:478, 450:480]))
         # 윗라인
         forward_list = []
-        forward_list.append(np.mean(cv_image[159:212, 420:450]))
-        forward_list.append(np.mean(cv_image[212:265, 420:450]))  # center
-        forward_list.append(np.mean(cv_image[265:318, 420:450]))
+        forward_list.append(np.var(cv_image[159:212, 420:450]))
+        forward_list.append(np.var(cv_image[212:265, 420:450]))  # center
+        forward_list.append(np.var(cv_image[265:318, 420:450]))
 
-        tmp = min(img_list)
+        # 분산이 크면 검정색과 흰색의 조합으로 봄
+        tmp = max(img_list)
         index = img_list.index(tmp)
         print("밑 : ",img_list)
         print(index)
-
-        tmp2 = min(forward_list)
+    
+        tmp2 = max(forward_list)
         index2 = forward_list.index(tmp2)
         print("위 : ",forward_list)
         print(index2)
 
-        if tmp2 < 110 :
-            cmd_vel.linear.x = 0.01
+        if tmp2 > 3000 :
+            cmd_vel.linear.x = 0.1
             cmd_vel.angular.z = (1-index2)/10
-            pub.publish(cmd_vel)
+
+        elif tmp > 1600 :
+            cmd_vel.linear.x = 0.1
+            cmd_vel.angular.z = (4-index)/10
     
         else :
             cmd_vel.linear.x = 0.01
-            cmd_vel.angular.z = (4-index)/10
-            pub.publish(cmd_vel)
+            cmd_vel.angular.z = 0
+        pub.publish(cmd_vel)
+        
     else:
         cmd_vel.linear.x = 0.0
         pub.publish(cmd_vel)
