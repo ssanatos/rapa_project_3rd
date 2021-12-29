@@ -61,7 +61,7 @@ def callback(frame):
         index2 = forward_list.index(tmp2)
         print("위 : ",forward_list)
         print(index2)
-
+        rospy.sleep(10)
         if tmp2 < 110 :
             cmd_vel.linear.x = 0.01
             cmd_vel.angular.z = (1-index2)/10
