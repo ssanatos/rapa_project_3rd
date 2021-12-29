@@ -62,11 +62,11 @@ def callback(frame):
         print("위 : ",forward_list)
         print(index2)
         # rospy.sleep(10)
-        if tmp2 > 3000 :
+        if tmp2 > 2000 :
             cmd_vel.linear.x = 0.1
             cmd_vel.angular.z = (1-index2)/10
 
-        elif tmp > 1600 :
+        elif tmp > 2000 :
             cmd_vel.linear.x = 0.1
             cmd_vel.angular.z = (4-index)/10
     
