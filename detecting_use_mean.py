@@ -67,9 +67,14 @@ def callback(frame):
             cmd_vel.angular.z = (1-index2)/10
             pub.publish(cmd_vel)
     
-        else :
+        elif tmp < 110 :
             cmd_vel.linear.x = 0.01
             cmd_vel.angular.z = (4-index)/10
+            pub.publish(cmd_vel)
+
+        else :
+            cmd_vel.linear.x = 0.01
+            cmd_vel.angular.z = -0.2
             pub.publish(cmd_vel)
     else:
         cmd_vel.linear.x = 0.0
